@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/WebBeds/nmod/iprange"
+	"github.com/noelruault/nmod/iprange"
 )
 
 type validateResponse struct {

@@ -13,17 +13,17 @@ The library and API live in separate directories and have individual `go.mod` fi
 
 This repository contains **two independent modules** that must be tagged separately:
 
-- **iprange module**: `github.com/WebBeds/nmod/iprange`
-- **api module**: `github.com/WebBeds/nmod/api`
+- **iprange module**: `github.com/noelruault/nmod/iprange`
+- **api module**: `github.com/noelruault/nmod/api`
 
 ### Publishing to GitHub
 
 Before you can use versioned tags, you must first push this repository to GitHub:
 
 ```bash
-# 1. Create a new repository on GitHub: https://github.com/WebBeds/nmod
+# 1. Create a new repository on GitHub: https://github.com/noelruault/nmod
 # 2. Add the remote and push
-git remote add origin git@github.com:WebBeds/nmod.git
+git remote add origin git@github.com:noelruault/nmod.git
 git branch -M main
 git add .
 git commit -m "Initial commit: multi-module repository"
@@ -63,20 +63,20 @@ mkdir iprange-test && cd iprange-test
 go mod init example.com/test
 
 # Fetch specific versions (only works after pushing tags to GitHub)
-go get github.com/WebBeds/nmod/iprange@iprange/v1.0.0
+go get github.com/noelruault/nmod/iprange@iprange/v1.0.0
 
 # Or use the simpler semantic version (Go strips the prefix)
-go get github.com/WebBeds/nmod/iprange@v1.0.0
+go get github.com/noelruault/nmod/iprange@v1.0.0
 ```
 
 Verify available versions:
 
 ```bash
 # List all versions of iprange module (requires public GitHub repo)
-go list -m -versions github.com/WebBeds/nmod/iprange
+go list -m -versions github.com/noelruault/nmod/iprange
 
 # List all versions of api module
-go list -m -versions github.com/WebBeds/nmod/api
+go list -m -versions github.com/noelruault/nmod/api
 ```
 
 ### Local development
@@ -84,7 +84,7 @@ go list -m -versions github.com/WebBeds/nmod/api
 For local development without pushing tags, the `api` module already uses a `replace` directive:
 
 ```go
-replace github.com/WebBeds/nmod/iprange => ../iprange
+replace github.com/noelruault/nmod/iprange => ../iprange
 ```
 
 This allows the API to use the local iprange code. Run `go mod tidy` in the api directory to sync dependencies.
