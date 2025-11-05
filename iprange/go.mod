@@ -1,3 +1,3 @@
-module github.com/WebBeds/nmod/iprange
+module github.com/noelruault/nmod/iprange
 
 go 1.25
