@@ -1,0 +1,62 @@
+#!/bin/bash
+set -e
+
+echo "=== Multi-Module Git Tagging Demo ==="
+echo ""
+
+# Initialize git repository if not already initialized
+if [ ! -d .git ]; then
+    echo "→ Initializing git repository..."
+    git init
+    git add .
+    git commit -m "Initial commit: multi-module repository with iprange and api"
+else
+    echo "→ Git repository already initialized"
+fi
+
+echo ""
+echo "=== Creating module-specific version tags ==="
+
+# Tag the iprange module
+echo "→ Tagging iprange module as iprange/v1.0.0"
+git tag -a iprange/v1.0.0 -m "iprange: release v1.0.0 - IP validation library"
+
+# Tag the api module
+echo "→ Tagging api module as api/v1.0.0"
+git tag -a api/v1.0.0 -m "api: release v1.0.0 - HTTP validation API"
+
+echo ""
+echo "=== Current tags ==="
+git tag -l
+
+echo ""
+echo "=== Tag details ==="
+echo ""
+echo "iprange/v1.0.0:"
+git show iprange/v1.0.0 --quiet
+
+echo ""
+echo "api/v1.0.0:"
+git show api/v1.0.0 --quiet
+
+echo ""
+echo "=== To push tags to remote ==="
+echo "Run these commands when you have a remote configured:"
+echo "  git push origin iprange/v1.0.0"
+echo "  git push origin api/v1.0.0"
+echo ""
+echo "Or push all tags at once:"
+echo "  git push origin --tags"
+
+echo ""
+echo "=== Verification ==="
+echo "To verify tags work with Go tooling, try fetching specific versions:"
+echo "  go get github.com/WebBeds/nmod/iprange@iprange/v1.0.0"
+echo "  go get github.com/WebBeds/nmod/api@api/v1.0.0"
+echo ""
+echo "Or list available versions:"
+echo "  go list -m -versions github.com/WebBeds/nmod/iprange"
+echo "  go list -m -versions github.com/WebBeds/nmod/api"
+
+echo ""
+echo "✓ Multi-module tagging complete!"
